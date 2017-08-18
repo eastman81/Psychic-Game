@@ -12,21 +12,27 @@ document.onkeyup = function(event) {
   		var userGuess = event.key;
   		var lettersPicked = guesses;
   		guesses.push(" " + userGuess);
-  	
+
   		// Randomly chooses a letter
   		var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-  		console.log(computerGuess);
+  		var compNumber = computerGuess;
+  		console.log(compNumber);
 
-  		if (userGuess === computerGuess) {
+  		function reset () {
+    		guesses = [];
+    		guessesLeft = 9;
+    	}
+
+  		if (userGuess === compNumber) {
   			alert("You Guessed It!");
-  			wins++;
   			reset();
+  			wins++;
   		}	else {
   			guessesLeft--;
   		}
 
   		if (guessesLeft < 1) {
-  			alert("HA HA HA, Bow Down to the Great Machine!!");
+  			alert("HA HA HA Wrong, Bow Down to the Great Machine!!");
   			losses++;
   			reset();
   		}
@@ -42,8 +48,3 @@ document.onkeyup = function(event) {
         // Set the inner HTML contents of the #game div to our html string
         document.querySelector("#gameInfo").innerHTML = html;
 }
-
-    function reset () {
-    	guesses = [];
-    	guessesLeft = 9;
-    }
